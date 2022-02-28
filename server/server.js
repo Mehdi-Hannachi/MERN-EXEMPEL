@@ -13,7 +13,7 @@ const logger = (req, res, next) => {
 
 const app = express();
 
-//4- Parse data
+// 4 - Parse data
 app.use(express.json());
 
 // 2 - Connect data base
@@ -22,26 +22,8 @@ connectDB();
 //Apply logger middleware
 app.use(logger);
 
-// Fake Data =
-let phones = [
-  {
-    id: 1,
-    marque: "Apple",
-    model: "Iphone 7 ",
-  },
-  {
-    id: 2,
-    Marque: "Apple",
-    Model: "Iphone 12 pro Max ",
-  },
-  {
-    id: 3,
-    Marque: "Sumsung",
-    Model: " S22 Ultra ",
-  },
-];
-
-// 3- Create endpoints (routes)
+// 3 - Create endpoints (routes)
+app.use("/user", auth);
 
 // GET all phones
 // GET  "/phones"
@@ -109,7 +91,13 @@ app.delete("/phones/:id", (req, res) => {
   }
 });
 
-app.use("/user", auth);
+// // Show one file
+
+// app.get("/test", (req, res) => {
+//   res.sendFile(__dirname + "/public/test.html");
+// });
+
+// app.use(express.static(__dirname + "/public"));
 
 //  1 - Run server
 app.listen(process.env.PORT, (err) => {
